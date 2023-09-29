@@ -19,6 +19,7 @@
 # -----------------------------------------------------------
 
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from time import sleep
 
 driver = webdriver.Chrome()
@@ -30,12 +31,11 @@ count = int(input('Enter the count : '))
 
 input('Enter anything after scanning QR code')
 
-user = driver.find_element_by_xpath('//span[@title = "{}"]'.format(name))
+user = driver.find_element(By.XPATH, '//span[@title = "{}"]'.format(name))
 user.click()
 
-msg_box = driver.find_element_by_class_name('DuUXI')
-
 for i in range(count):
+    msg_box = driver.find_element(By.XPATH, '//div[@title = "Typ een bericht"]/p')
     msg_box.send_keys(msg)
-    button = driver.find_element_by_class_name('_2Ujuu')
+    button = driver.find_element(By.XPATH, '//span[@data-icon = "send"]')
     button.click()
